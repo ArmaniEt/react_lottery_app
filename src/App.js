@@ -26,21 +26,18 @@ class App extends Component {
             };
 
     addNums = () => {
-        const numbers = this.state.numbers;
-        let index = 0;
-
-
-        while(index < 5) {
-            numbers[index] = Math.floor(Math.random() * 37 - 5) + 5;
-            index++;
-
+        let newArray = [];
+        while(newArray.length < 5) {
+            let randomNum = Math.floor(Math.random() * 37 - 5) + 5;
+            if (newArray.indexOf(randomNum) === -1) {
+                newArray.push(randomNum);
+            }
         }
 
 
-
-
-        numbers.sort((a, b) => a - b); // sorting an array
-        this.setState({numbers});
+        let stateArr = {...this.state};
+        stateArr.numbers = newArray.sort((a, b) => a - b);
+        this.setState(stateArr);
 
     };
 
